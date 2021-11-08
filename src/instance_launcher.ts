@@ -325,7 +325,7 @@ export default class InstanceLauncher {
                     desiredScaleDownQuantity,
                 );
                 break;
-            case 'JVB':
+            case 'jvb':
                 listOfInstancesForScaleDown = this.getJVBsForScaleDown(
                     ctx,
                     group,

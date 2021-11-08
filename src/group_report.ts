@@ -154,7 +154,7 @@ export default class GroupReportGenerator {
                     }
                     break;
                 case 'jigasi':
-                case 'JVB':
+                case 'jvb':
                     // @TODO: implement JVB instance counting
                     break;
             }
@@ -207,7 +207,7 @@ export default class GroupReportGenerator {
                             instanceReport.scaleStatus = 'GRACEFUL SHUTDOWN';
                         }
                         break;
-                    case 'JVB':
+                    case 'jvb':
                         // @TODO: convert JVB stats into more explict statuses
                         instanceReport.scaleStatus = 'ONLINE';
                         if (instanceState.status.jvbStatus && instanceState.status.jvbStatus.participants) {

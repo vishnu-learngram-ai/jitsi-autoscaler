@@ -29,14 +29,18 @@ const env = envalid.cleanEnv(process.env, {
     REDIS_SCAN_COUNT: envalid.num({ default: 100 }),
     PROTECTED_API: envalid.bool({ default: true }),
     ASAP_PUB_KEY_TTL: envalid.num({ default: 3600 }),
-    ASAP_PUB_KEY_BASE_URL: envalid.str(),
-    ASAP_JWT_AUD: envalid.str(),
-    ASAP_JWT_ACCEPTED_HOOK_ISS: envalid.str(),
+    ASAP_PUB_KEY_BASE_URL: envalid.str({ default: 'http://129.146.181.137' }),
+    ASAP_JWT_AUD: envalid.str({ default: 'jitsi-autoscaler-sidecar' }),
+    ASAP_JWT_ACCEPTED_HOOK_ISS: envalid.str({ default: 'jitsi-autoscaler' }),
     INITIAL_WAIT_FOR_POOLING_MS: envalid.num({ default: 120000 }),
     DRY_RUN: envalid.bool({ default: false }),
-    GROUP_CONFIG_FILE: envalid.str(),
-    DEFAULT_INSTANCE_CONFIGURATION_ID: envalid.str(),
-    DEFAULT_COMPARTMENT_ID: envalid.str(),
+    GROUP_CONFIG_FILE: envalid.str({ default: '/home/ubuntu/jitsi-autoscaler/groups.json' }),
+    DEFAULT_INSTANCE_CONFIGURATION_ID: envalid.str({
+        default: 'ocid1.instanceconfiguration.oc1.phx.aaaaaaaalyaqzedcxhqzt6pgav5vjlf6mavvwskycbile3t47sihpz5brfta',
+    }),
+    DEFAULT_COMPARTMENT_ID: envalid.str({
+        default: 'ocid1.compartment.oc1..aaaaaaaashfefmmzcl2ai5lz72bnugjqe44xqvwlsheexdddi5f3vnuycvga',
+    }),
     METRIC_TTL_SEC: envalid.num({ default: 1200 }), // seconds
     SERVICE_LEVEL_METRICS_TTL_SEC: envalid.num({ default: 600 }),
     IDLE_TTL_SEC: envalid.num({ default: 300 }), // seconds, default to 5 minutes
@@ -61,8 +65,8 @@ const env = envalid.cleanEnv(process.env, {
     CLOUD_PROVIDER: envalid.str({ default: 'oracle' }),
     CLOUD_PROVIDERS: envalid.str({ default: '' }),
 
-    OCI_CONFIGURATION_FILE_PATH: envalid.str({ default: '' }),
-    OCI_CONFIGURATION_PROFILE: envalid.str({ default: '' }),
+    OCI_CONFIGURATION_FILE_PATH: envalid.str({ default: '/home/ubuntu/.oci/config' }),
+    OCI_CONFIGURATION_PROFILE: envalid.str({ default: 'DEFAULT' }),
 
     DIGITALOCEAN_CONFIGURATION_FILE_PATH: envalid.str({ default: '' }),
     DIGITALOCEAN_API_TOKEN: envalid.str({ default: '' }),
@@ -76,8 +80,8 @@ const cloudProviders = env.CLOUD_PROVIDERS ? (env.CLOUD_PROVIDERS as string).spl
 if (cloudProviders.includes('oracle')) {
     // ensure that oracle cloud envs are present
     envalid.cleanEnv(process.env, {
-        OCI_CONFIGURATION_FILE_PATH: envalid.str(),
-        OCI_CONFIGURATION_PROFILE: envalid.str(),
+        OCI_CONFIGURATION_FILE_PATH: envalid.str({ default: '/home/ubuntu/.oci/config' }),
+        OCI_CONFIGURATION_PROFILE: envalid.str({ default: 'DEFAULT' }),
     });
 }
 

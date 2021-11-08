@@ -179,6 +179,7 @@ export class InstanceTracker {
             // TODO: increment stats report error counter
         } else {
             let jibriStatusReport: JibriStatusReport;
+            ctx.logger.warn(report.instance.instanceType, 'report.instance.instanceType');
             switch (report.instance.instanceType) {
                 case 'jibri':
                 case 'sip-jibri':
@@ -286,12 +287,14 @@ export class InstanceTracker {
         metricInventoryPerPeriod: Array<Array<InstanceMetric>>,
         periodCount: number,
     ): Promise<Array<number>> {
+        ctx.logger.warn(group.type);
         switch (group.type) {
             case 'jibri':
             case 'sip-jibri':
                 return this.getAvailableMetricPerPeriod(ctx, metricInventoryPerPeriod, periodCount);
             case 'jigasi':
-            case 'JVB':
+            case 'jvb':
+                ctx.logger.warn("[AutoScaler] JVB  sdk,mkslmfdklsf;ls,;fl,s;'f,");
                 return this.getAverageMetricPerPeriod(ctx, metricInventoryPerPeriod, periodCount);
         }
         return;
