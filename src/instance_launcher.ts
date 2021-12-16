@@ -80,19 +80,11 @@ export default class InstanceLauncher {
 
         await this.audit.updateLastLauncherRun(ctx, group.name);
         const desiredCount = group.scalingOptions.desiredCount;
-        const maxDesired = group.scalingOptions.maxDesired;
-        const minDesired = group.scalingOptions.minDesired;
         const currentInventory = await this.instanceTracker.trimCurrent(ctx, groupName);
         const count = currentInventory.length;
 
         try {
-            ctx.logger.info('[Ashutosh] Will scale up to the desired count', {
-                groupName,
-                desiredCount,
-                count,
-                minDesired,
-                maxDesired,
-            });
+            
             if (count < group.scalingOptions.desiredCount && count < group.scalingOptions.maxDesired) {
                 ctx.logger.info('[Launcher] Will scale up to the desired count', { groupName, desiredCount, count });
 

@@ -287,14 +287,12 @@ export class InstanceTracker {
         metricInventoryPerPeriod: Array<Array<InstanceMetric>>,
         periodCount: number,
     ): Promise<Array<number>> {
-        ctx.logger.warn(group.type);
         switch (group.type) {
             case 'jibri':
             case 'sip-jibri':
                 return this.getAvailableMetricPerPeriod(ctx, metricInventoryPerPeriod, periodCount);
             case 'jigasi':
             case 'jvb':
-                ctx.logger.warn("[AutoScaler] JVB  sdk,mkslmfdklsf;ls,;fl,s;'f,");
                 return this.getAverageMetricPerPeriod(ctx, metricInventoryPerPeriod, periodCount);
         }
         return;
@@ -322,11 +320,6 @@ export class InstanceTracker {
         ctx.logger.debug(`Getting average metric per period for ${periodCount} periods`, {
             metricInventoryPerPeriod,
         });
-        console.log();
-        console.log();
-        console.log('metricInventoryPerPeriod', metricInventoryPerPeriod);
-        console.log();
-        console.log();
         return metricInventoryPerPeriod.slice(0, periodCount).map((instanceMetrics) => {
             console.log('instanceMetrics', instanceMetrics);
             return this.computeSummaryMetric(instanceMetrics, true);
@@ -354,8 +347,7 @@ export class InstanceTracker {
         );
         const cleanupEnd = process.hrtime(cleanupStart);
         ctx.logger.info(
-            `Cleaned up ${itemsCleanedUp} metrics in ${
-                cleanupEnd[0] * 1000 + cleanupEnd[1] / 1000000
+            `Cleaned up ${itemsCleanedUp} metrics in ${cleanupEnd[0] * 1000 + cleanupEnd[1] / 1000000
             } ms, for group ${group}`,
         );
 
@@ -380,8 +372,7 @@ export class InstanceTracker {
         ctx.logger.debug(`instance metric periods: `, { group, periodsCount, periodDurationSeconds, metricPoints });
 
         ctx.logger.info(
-            `Returned ${metricPoints.length} metrics in ${
-                inventoryEnd[0] * 1000 + inventoryEnd[1] / 1000000
+            `Returned ${metricPoints.length} metrics in ${inventoryEnd[0] * 1000 + inventoryEnd[1] / 1000000
             } ms, for group ${group}`,
         );
 
@@ -460,8 +451,7 @@ export class InstanceTracker {
         ctx.logger.debug(`instance states: ${states}`, { group, states });
         const currentEnd = process.hrtime(currentStart);
         ctx.logger.info(
-            `Scanned ${states.length} group instances in ${scanCounts} scans and ${
-                currentEnd[0] * 1000 + currentEnd[1] / 1000000
+            `Scanned ${states.length} group instances in ${scanCounts} scans and ${currentEnd[0] * 1000 + currentEnd[1] / 1000000
             } ms, for group ${group}`,
         );
 
@@ -475,8 +465,7 @@ export class InstanceTracker {
             });
 
             ctx.logger.info(
-                `Filtered out shutting down from ${states.length} instances in ${
-                    filterShutdownEnd[0] * 1000 + filterShutdownEnd[1] / 1000000
+                `Filtered out shutting down from ${states.length} instances in ${filterShutdownEnd[0] * 1000 + filterShutdownEnd[1] / 1000000
                 } ms for group ${group}`,
             );
             return statesExceptShutDown;

@@ -37,7 +37,6 @@ export class ASAPPubKeyFetcher {
                 done(null, pubKey);
             })
             .catch((err) => {
-                req.context.logger.debug('this base url', this.baseUrl, header.kid);
                 req.context.logger.error(`obtaining asap pub ${err}`);
                 done(err);
             });
@@ -47,7 +46,6 @@ export class ASAPPubKeyFetcher {
 async function fetchPublicKey(baseUrl: string, kid: string): Promise<string> {
     const hashedKid = sha256(kid);
     const reqUrl = `${baseUrl}/${hashedKid}.pem`;
-    console.log(reqUrl);
     const response = await got(reqUrl);
     return response.body;
 }
