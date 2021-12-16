@@ -34,9 +34,9 @@ const env = envalid.cleanEnv(process.env, {
     ASAP_JWT_ACCEPTED_HOOK_ISS: envalid.str({ default: 'jitsi-autoscaler' }),
     INITIAL_WAIT_FOR_POOLING_MS: envalid.num({ default: 120000 }),
     DRY_RUN: envalid.bool({ default: false }),
-    GROUP_CONFIG_FILE: envalid.str({ default: '/home/ubuntu/jitsi-autoscaler/groups.json' }),
+    GROUP_CONFIG_FILE: envalid.str({ default: '/home/ubuntu/jitsi/jitsi-autoscaler/groups.json' }),
     DEFAULT_INSTANCE_CONFIGURATION_ID: envalid.str({
-        default: 'ocid1.instanceconfiguration.oc1.phx.aaaaaaaalyaqzedcxhqzt6pgav5vjlf6mavvwskycbile3t47sihpz5brfta',
+        default: 'ocid1.instanceconfiguration.oc1.phx.aaaaaaaaqfzoepr4f7gudyynwzzea3zfxk7mhvj7m7qncir2a2msju4kaotq',
     }),
     DEFAULT_COMPARTMENT_ID: envalid.str({
         default: 'ocid1.compartment.oc1..aaaaaaaashfefmmzcl2ai5lz72bnugjqe44xqvwlsheexdddi5f3vnuycvga',

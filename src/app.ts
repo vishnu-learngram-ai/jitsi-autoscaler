@@ -269,7 +269,6 @@ const h = new Handlers({
 });
 
 const validator = new Validator({ instanceTracker, instanceGroupManager });
-
 const loggedPaths = ['/sidecar*', '/groups*'];
 app.use(loggedPaths, stats.middleware);
 app.use('/', context.injectContext);

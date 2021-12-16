@@ -190,6 +190,7 @@ export default class AutoscaleProcessor {
             case 'jigasi':
             case 'jvb':
                 // in the case of JVB scale up only if value (average stress level) is above or equal to threshhold
+                console.log('count to scaleUpChoice', value, group.scalingOptions.scaleUpThreshold);
                 return (
                     (count < group.scalingOptions.maxDesired && value >= group.scalingOptions.scaleUpThreshold) ||
                     count < group.scalingOptions.minDesired

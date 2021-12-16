@@ -189,7 +189,7 @@ export class InstanceTracker {
                 case 'jigasi':
                     instanceState.status.jigasiStatus = <JigasiStatus>report.stats;
                     break;
-                case 'JVB':
+                case 'jvb':
                     instanceState.status.jvbStatus = <JVBStatus>report.stats;
                     break;
             }
@@ -252,7 +252,7 @@ export class InstanceTracker {
                         metricValue = state.status.jigasiStatus.stress_level;
                     }
                     break;
-                case 'JVB':
+                case 'jvb':
                     if (!state.status.jvbStatus) {
                         // If JVB is not up or is in graceful shutdown, we should not use it to compute average stress level across the group
                         trackMetric = false;
@@ -322,8 +322,13 @@ export class InstanceTracker {
         ctx.logger.debug(`Getting average metric per period for ${periodCount} periods`, {
             metricInventoryPerPeriod,
         });
-
+        console.log();
+        console.log();
+        console.log('metricInventoryPerPeriod', metricInventoryPerPeriod);
+        console.log();
+        console.log();
         return metricInventoryPerPeriod.slice(0, periodCount).map((instanceMetrics) => {
+            console.log('instanceMetrics', instanceMetrics);
             return this.computeSummaryMetric(instanceMetrics, true);
         });
     }
