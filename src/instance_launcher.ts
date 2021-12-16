@@ -84,6 +84,7 @@ export default class InstanceLauncher {
         const count = currentInventory.length;
 
         try {
+            
             if (count < group.scalingOptions.desiredCount && count < group.scalingOptions.maxDesired) {
                 ctx.logger.info('[Launcher] Will scale up to the desired count', { groupName, desiredCount, count });
 
@@ -325,7 +326,7 @@ export default class InstanceLauncher {
                     desiredScaleDownQuantity,
                 );
                 break;
-            case 'JVB':
+            case 'jvb':
                 listOfInstancesForScaleDown = this.getJVBsForScaleDown(
                     ctx,
                     group,

@@ -93,7 +93,10 @@ export default class OracleInstanceManager implements CloudInstanceManager {
 
         const overwriteLaunchDetails: core.models.InstanceConfigurationLaunchInstanceDetails = {
                 availabilityDomain: availabilityDomain,
-                displayName: displayName,
+                // displayName: displayName,
+                createVnicDetails: {
+                    subnetId: 'ocid1.subnet.oc1.phx.aaaaaaaaxpjljjci55kqhs7yudaiybcgm4ivy6mchcv7pvswfu7sqen3jviq',
+                },
                 freeformTags: freeformTags,
             },
             overwriteComputeInstanceDetails: core.models.ComputeInstanceDetails = {

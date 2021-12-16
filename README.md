@@ -44,3 +44,8 @@ docker-compose -f demo/docker-compose.yml up
 ```
 docker-compose -f demo/docker-compose.yml down
 ```
+Important commmands
+sudo redis-cli FLUSHALL
+sudo  rm -rf dist/
+    npm run build
+    npm run start
